@@ -2,7 +2,7 @@ import UIKit
 import PlaygroundSupport
 
 
-let LINE_DRAW_SPEED: Double = 1
+let LINE_DRAW_SPEED: Double = 0.3
 
 let POINT_INTERDISTANCE: Double = 40.0
 let POLAR_DISPERSE_ANGLE: Double = 72.0
