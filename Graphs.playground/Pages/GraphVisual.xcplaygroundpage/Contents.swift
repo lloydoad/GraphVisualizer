@@ -1,13 +1,16 @@
 import UIKit
 import PlaygroundSupport
 
-let WIDTH: Double = 450
-let HEIGHT: Double = 450
+
 let LINE_DRAW_SPEED: Double = 1
+
 let POINT_INTERDISTANCE: Double = 40.0
 let POLAR_DISPERSE_ANGLE: Double = 72.0
 let POINT_RADIUS: Double = 6
-let INFINITY: Double = Double.greatestFiniteMagnitude
+let SIZE: Int = 22
+
+let WIDTH: Double = 450
+let HEIGHT: Double = 450
 let FRAME: CGRect = CGRect(x: 0, y: 0, width: WIDTH, height: HEIGHT)
 
 struct SimpleEdge: Hashable {
@@ -182,6 +185,6 @@ class GraphVisual: UIView {
     }
 }
 
-let graph = GraphVisual(frame: FRAME, size: 20)
+let graph = GraphVisual(frame: FRAME, size: SIZE)
 PlaygroundPage.current.liveView = graph
 
