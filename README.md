@@ -5,6 +5,7 @@ A visualizer for minimal spanning tree generation methods
 * Generating random graphs of specified size
 * Visualizing all graph edges
 <img src="https://github.com/lloydoad/GraphVisualizer/blob/master/images/createGraph.gif" width=250 height=250>
+
 * Visualizing edges of minimal spanning tree and it's creation
 <img src="https://github.com/lloydoad/GraphVisualizer/blob/master/images/createMST.gif" width=250 height=250>
 
