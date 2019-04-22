@@ -103,4 +103,52 @@ public class Graph {
         
         return result
     }
+    
+    public func djikstra(start: Int) -> [Edge] {
+        guard start < self.adjacencyList.count else {
+            return []
+        }
+        
+        var current: Int = start
+        var preResult: [Int:Edge] = [:]
+        var sorted: [(Double,Edge)] = []
+        var weights: [Double] = Array(repeating: INFINITY, count: self.adjacencyList.count)
+        var visited: [Bool] = Array.init(repeating: false, count: self.adjacencyList.count)
+        var unvisited: Set<Int> = Set<Int>()
+        
+        self.adjacencyList.keys.forEach {unvisited.insert($0)}
+        
+        visited[current] = true
+        weights[current] = 0
+        unvisited.remove(current)
+        self.adjacencyList[current]?.forEach {sorted.append((weights[current] + $0.weight,$0))}
+        sorted.sort { (edgeOne, edgeTwo) -> Bool in
+            edgeOne.0 <= edgeTwo.0
+        }
+        
+        while(!unvisited.isEmpty) {
+            var selectedEdge: Edge
+            var compoundWeight: Double
+            
+            repeat {
+                if sorted.isEmpty { return preResult.map {return $0.value} }
+                compoundWeight = sorted.first!.0
+                selectedEdge = sorted.first!.1
+                sorted.remove(at: 0)
+                weights[current] = compoundWeight
+                current = selectedEdge.toPoint
+            } while(visited[current] == true)
+            
+            preResult[current] = selectedEdge
+            
+            visited[current] = true
+            unvisited.remove(current)
+            self.adjacencyList[current]?.forEach {sorted.append((weights[current] + $0.weight,$0))}
+            sorted.sort { (edgeOne, edgeTwo) -> Bool in
+                edgeOne.0 <= edgeTwo.0
+            }
+        }
+        
+        return preResult.map {return $0.value}
+    }
 }

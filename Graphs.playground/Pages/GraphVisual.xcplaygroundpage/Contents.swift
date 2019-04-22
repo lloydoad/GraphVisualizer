@@ -7,7 +7,7 @@ let LINE_DRAW_SPEED: Double = 0.3
 let POINT_INTERDISTANCE: Double = 40.0
 let POLAR_DISPERSE_ANGLE: Double = 72.0
 let POINT_RADIUS: Double = 6
-let SIZE: Int = 22
+let SIZE: Int = 15
 
 let WIDTH: Double = 450
 let HEIGHT: Double = 450
@@ -56,6 +56,12 @@ class GraphVisual: UIView {
         primsButton.setAttributedTitle(NSAttributedString(string: "Prims", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
         primsButton.addTarget(self, action: #selector(startPrims), for: .touchUpInside)
         
+        let djikstraButton = UIButton(type: .roundedRect)
+        djikstraButton.frame = CGRect(x: WIDTH/2 - 40, y: HEIGHT*(0.5/10), width: 80, height: 30)
+        djikstraButton.backgroundColor = UIColor.purple
+        djikstraButton.setAttributedTitle(NSAttributedString(string: "Djikstra", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
+        djikstraButton.addTarget(self, action: #selector(startDjikstra), for: .touchUpInside)
+        
         let resetButton = UIButton(type: .roundedRect)
         resetButton.frame = CGRect(x: WIDTH/2 - 140, y: HEIGHT*(9/10), width: 80, height: 30)
         resetButton.backgroundColor = UIColor.purple
@@ -71,10 +77,15 @@ class GraphVisual: UIView {
         self.addSubview(primsButton)
         self.addSubview(resetButton)
         self.addSubview(newGraph)
+        self.addSubview(djikstraButton)
     }
     
     @objc func startPrims() {
         self.drawLines(edges: self.graph?.prims(start: 0) ?? [])
+    }
+    
+    @objc func startDjikstra() {
+        self.drawLines(edges: self.graph?.djikstra(start: 0) ?? [])
     }
     
     @objc func resetGraph() {
